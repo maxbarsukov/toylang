@@ -8,6 +8,7 @@ AllCops:
   Exclude:
     - 'spec/dummy/bin/*'
     - '*.md'
+    - vendor/bundle/**/*
 
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
