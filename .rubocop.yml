@@ -8,6 +8,7 @@ AllCops:
   Exclude:
     - 'spec/dummy/bin/*'
     - '*.md'
+    - lib/toylang/parser/*
     - vendor/bundle/**/*
 
 Layout/SpaceInsideHashLiteralBraces:
