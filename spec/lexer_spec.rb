@@ -17,13 +17,17 @@ RSpec.describe Lexer do
     expect(lexer.tokenize('name')).to eq [[:IDENTIFIER, 'name']]
   end
 
+  it 'tokenizes keywords' do
+    expect(lexer.tokenize('while')).to eq [[:WHILE, 'while']]
+  end
+
   it 'tokenizes an operator' do
     %w[+ || && ) < >].each do |operator|
       expect(lexer.tokenize(operator)).to eq [[operator, operator]]
     end
   end
 
-  it 'tokenizes an indents' do
+  it 'tokenizes indents' do
     code = <<~CODE
       if 1:
         if 2:
