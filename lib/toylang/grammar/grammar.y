@@ -130,7 +130,6 @@ class Parser
   | ParamList "," IDENTIFIER      { result = val[0] << val[2] }
   ;
 
-  x``
   Class:
     CLASS CONSTANT Block          { result = ClassNode.new(val[1], val[2]) }
   ;
