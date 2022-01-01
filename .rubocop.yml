@@ -14,13 +14,13 @@ Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
 Metrics/BlockLength:
-  Max: 36
+  Max: 100
   Exclude:
     - spec/**/*.rb
     - toylang.gemspec
 
 Metrics/BlockNesting:
-  Max: 2
+  Max: 4
 
 Layout/LineLength:
   Max: 120
@@ -28,17 +28,26 @@ Layout/LineLength:
 
 Metrics/MethodLength:
   CountComments: false
-  Max: 15
+  Max: 80
 
 Metrics/ModuleLength:
-  Max: 120
+  Max: 250
 
 Metrics/ClassLength:
-  Max: 120
+  Max: 350
 
 Metrics/ParameterLists:
   Max: 5
   CountKeywordArgs: true
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
 
 Style/CollectionMethods:
   Enabled: true
