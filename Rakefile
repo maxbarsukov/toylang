@@ -10,3 +10,9 @@ require 'rubocop/rake_task'
 RuboCop::RakeTask.new
 
 task default: %i[spec rubocop]
+
+task :generate_parser do
+  puts 'Generating a parser (lib/toylang/parser/parser.rb)...'
+  `bundle exec racc -o lib/toylang/parser/parser.rb lib/toylang/grammar/grammar.y`
+  puts 'Complete!'
+end
