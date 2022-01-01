@@ -47,7 +47,6 @@ class Parser
   | Assign
   | Def
   | Class
-  | If
   | IfElse
   | While
   | '(' Expression ')'                  { result = val[1] }
@@ -129,16 +128,15 @@ class Parser
     CLASS CONSTANT Block                { result = ClassNode.new(val[1], val[2]) }
   ;
 
-  If:
-    IF Expression Block                 { result = IfNode.new(val[1], val[2]) }
-  ;
-
   IfElse:
-    IF Expression Block
-    ELSE Block                          { result = IfElseNode.new(val[1], val[2], val[4]) }
+    IF Expression Block                 { result = IfNode.new(val[1], val[2]) }
+  | IF Expression Block ELSE Block      { result = IfElseNode.new(val[1], val[2], val[4]) }
+  ;
 
   Block:
     INDENT Expressions DEDENT           { result = val[1] }
+  | INDENT Expressions
+    DEDENT Terminator                   { result = val[1] }
   ;
 end
 
