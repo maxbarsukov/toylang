@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../lib/toylang/lexer/lexer'
-
 RSpec.describe Lexer do
   lexer = described_class.new
 
