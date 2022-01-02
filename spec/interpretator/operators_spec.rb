@@ -94,12 +94,12 @@ RSpec.describe Interpreter do
 
       it '&' do
         expect(interpreter.eval('53 & 34').ruby_value).to eq 32
-        expect(interpreter.eval('-23 & -4').ruby_value).to eq -24
+        expect(interpreter.eval('-23 & -4').ruby_value).to eq(-24)
       end
 
       it '|' do
         expect(interpreter.eval('53 | 34').ruby_value).to eq 55
-        expect(interpreter.eval('-23 | -4').ruby_value).to eq -3
+        expect(interpreter.eval('-23 | -4').ruby_value).to eq(-3)
       end
 
       it '^' do
@@ -109,12 +109,12 @@ RSpec.describe Interpreter do
 
       it '<<' do
         expect(interpreter.eval('3 << 4').ruby_value).to eq 48
-        expect(interpreter.eval('-12 << -3').ruby_value).to eq -2
+        expect(interpreter.eval('-12 << -3').ruby_value).to eq(-2)
       end
 
       it '>>' do
         expect(interpreter.eval('256 >> 2').ruby_value).to eq 64
-        expect(interpreter.eval('-34 >> 3').ruby_value).to eq -5
+        expect(interpreter.eval('-34 >> 3').ruby_value).to eq(-5)
       end
 
       it '||' do
@@ -135,13 +135,13 @@ RSpec.describe Interpreter do
       end
 
       it '-' do
-        expect(interpreter.eval('-1').ruby_value).to eq -1
+        expect(interpreter.eval('-1').ruby_value).to eq(-1)
         expect(interpreter.eval('-(-1)').ruby_value).to eq 1
         expect(interpreter.eval('a = -1; -a').ruby_value).to eq 1
       end
 
       it '~' do
-        expect(interpreter.eval('~35').ruby_value).to eq -36
+        expect(interpreter.eval('~35').ruby_value).to eq(-36)
         expect(interpreter.eval('~-12').ruby_value).to eq 11
       end
     end
