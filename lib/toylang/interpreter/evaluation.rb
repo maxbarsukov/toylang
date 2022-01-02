@@ -61,6 +61,8 @@ end
 
 class SetConstantNode
   def eval(context)
+    raise "Unable to re-assigne constant: #{name}" unless context[name].nil?
+
     context[name] = value.eval(context)
   end
 end
