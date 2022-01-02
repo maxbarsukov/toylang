@@ -7,6 +7,10 @@ RSpec.describe Lexer do
     expect(lexer.tokenize('1')).to eq [[:NUMBER, 1]]
   end
 
+  it 'tokenizes a comment' do
+    expect(lexer.tokenize("#comment\n1")).to eq [[:NUMBER, 1]]
+  end
+
   it 'tokenizes a string' do
     expect(lexer.tokenize('"hi"')).to eq [[:STRING, 'hi']]
   end
