@@ -32,4 +32,8 @@ class ToyLangClass < ToyLangObject
   def new_with_value(value)
     ToyLangObject.new(self, value)
   end
+
+  def inspect
+    "#<ToyLangClass class=#{@runtime_class} superclass=#{@runtime_superclass}"
+  end
 end
