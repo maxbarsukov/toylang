@@ -16,7 +16,7 @@ class Parser
     left  '.'
     right '~'
     right '!' '-'
-    left '**'
+    left  '**'
     left  '*' '/' '%'
     left  '+' '-'
     left  '<<' '>>'
