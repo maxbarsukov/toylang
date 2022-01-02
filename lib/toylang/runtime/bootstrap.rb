@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-awesome_class = ToyLangClass.new
-awesome_class.runtime_class = awesome_class
+toylang_class = ToyLangClass.new
+toylang_class.runtime_class = toylang_class
 object_class = ToyLangClass.new
-object_class.runtime_class = awesome_class
+object_class.runtime_class = toylang_class
 
 Runtime = Context.new(object_class.new)
 
-Runtime['Class'] = awesome_class
+Runtime['Class'] = toylang_class
 Runtime['Object'] = object_class
 Runtime['Number'] = ToyLangClass.new
 Runtime['String'] = ToyLangClass.new
