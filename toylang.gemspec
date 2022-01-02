@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ['maxbarsukov']
   spec.email = ['maximbarsukov@bk.ru']
 
-  spec.summary = ':teddy_bear: Toy Language with own Bytecode and VM'
-  spec.description = 'Simple VM and Interpreter for Python-like programming language'
+  spec.summary = ':teddy_bear: Toy OOP Language'
+  spec.description = 'Simple Interpreter for Python-like OOP programming language'
   spec.homepage = 'https://rubygems.org/gems/toylang'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 2.5.0'
