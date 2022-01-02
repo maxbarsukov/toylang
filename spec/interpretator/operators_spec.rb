@@ -3,6 +3,12 @@
 RSpec.describe Interpreter do
   interpreter = described_class.new
 
+  describe 'String' do
+    it '+' do
+      expect(interpreter.eval('"hi " + "there"').ruby_value).to eq 'hi there'
+    end
+  end
+
   describe 'Number' do
     describe 'Binary' do
       it '+' do
