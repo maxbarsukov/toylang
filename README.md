@@ -2,12 +2,24 @@
 
 [![Build Status](https://github.com/maxbarsukov/toylang/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/maxbarsukov/toylang/actions/workflows/main.yml)
 [![Codecov](https://codecov.io/gh/maxbarsukov/toylang/branch/master/graph/badge.svg?token=9L8Y4N4KKW)](https://codecov.io/gh/maxbarsukov/toylang)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/maxbarsukov/toylang)
+
+![Gem Version](https://img.shields.io/gem/v/toylang)
+![Gem Downloads](https://img.shields.io/gem/dt/toylang)
 
 ***ToyLang*** is interpreted high-level fully OOP language with *Python-like* syntax and dynamic typing.
 
  > Complex is better than complicated.
 
 As a multi-paradigm language, ***ToyLang*** supports object-oriented and imperative programming styles both.
+
+- As in Python, blocks of code are delimited **by** their **indentation**.
+- Classes are declared with the `class` keyword.
+- Methods can be defined anywhere using the `def` keyword.
+- If a method takes no arguments, *parenthesis can be skipped*, like in
+**Ruby**.
+- The *last value evaluated in a method is its return value*.
+- ***Everything is an object***.
 
 ## Installation
 
