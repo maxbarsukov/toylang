@@ -8,7 +8,7 @@ RSpec.describe Lexer do
   end
 
   it 'tokenizes a comment' do
-    expect(lexer.tokenize("#comment\n1")).to eq [[:NUMBER, 1]]
+    expect(lexer.tokenize("#comment\n1")).to eq [[:NEWLINE, "\n"], [:NUMBER, 1]]
   end
 
   it 'tokenizes a string' do

@@ -16,7 +16,12 @@ class Lexer
       chunk = code[position..-1]
 
       if chunk.start_with?('#')
-        offset = chunk.index("\n") + 1
+        next_line = chunk.index("\n")
+        offset = if next_line.nil?
+                   chunk.size
+                 else
+                   next_line
+                 end
 
       elsif (identifier = chunk[/\A([a-z]\w*)/, 1])
         token, offset = tokenize_identifier(identifier)
