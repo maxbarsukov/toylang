@@ -26,14 +26,24 @@ Runtime['Class'].runtime_methods['new'] = proc do |receiver, _arguments|
 end
 
 # Print an object to the console.
-Runtime['Object'].runtime_methods['print'] = proc do |_receiver, arguments|
-  print arguments.first.ruby_value
+Runtime['Object'].runtime_methods['print'] = proc do |receiver, arguments|
+  if arguments.size.zero?
+    print receiver.ruby_value
+  else
+    arguments.each do |arg|
+      print arg.ruby_value
+    end
+  end
   Runtime['nil']
 end
 
 # Print an object to the console with new line.
-Runtime['Object'].runtime_methods['println'] = proc do |_receiver, arguments|
-  puts arguments.first.ruby_value
+Runtime['Object'].runtime_methods['println'] = proc do |receiver, arguments|
+  if arguments.size.zero?
+    puts receiver.ruby_value
+  else
+    puts arguments.map(&:ruby_value)
+  end
   Runtime['nil']
 end
 
@@ -95,4 +105,10 @@ boolean_operators = %w[== != && & || | ^]
     result = !receiver.ruby_value
     Runtime[boolean].new_with_value(result)
   end
+end
+
+### Strings
+Runtime['String'].runtime_methods['+'] = proc do |receiver, arguments|
+  result = receiver.ruby_value + arguments.first.ruby_value
+  Runtime['String'].new_with_value(result)
 end
