@@ -31,7 +31,7 @@ class NilNode < LiteralNode
   end
 end
 
-CallNode = Struct.new(:receiver, :method, :arguments) # rubocop:disable Lint/StructNewOverride
+CallNode = Struct.new(:receiver, :call_method, :arguments)
 
 GetConstantNode = Struct.new(:name)
 SetConstantNode = Struct.new(:name, :value)
