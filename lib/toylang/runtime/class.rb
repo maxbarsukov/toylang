@@ -3,15 +3,20 @@
 class ToyLangClass < ToyLangObject
   attr_reader :runtime_methods
 
-  def initialize
+  def initialize(superclass = nil)
     @runtime_methods = {}
     @runtime_class = Runtime['Class'] if defined?(Runtime)
+    @runtime_superclass = superclass
     super(runtime_class)
   end
 
   def lookup(method_name)
     method = @runtime_methods[method_name]
-    raise "Method not found: #{method_name}" if method.nil?
+    unless method
+      return @runtime_superclass.lookup(method_name) if @runtime_superclass
+
+      raise "Method not found: #{method_name}"
+    end
 
     method
   end

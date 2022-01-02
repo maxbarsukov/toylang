@@ -9,12 +9,12 @@ Runtime = Context.new(object_class.new)
 
 Runtime['Class'] = toylang_class
 Runtime['Object'] = object_class
-Runtime['Number'] = ToyLangClass.new
-Runtime['String'] = ToyLangClass.new
+Runtime['Number'] = ToyLangClass.new(Runtime['Object'])
+Runtime['String'] = ToyLangClass.new(Runtime['Object'])
 
-Runtime['TrueClass'] = ToyLangClass.new
-Runtime['FalseClass'] = ToyLangClass.new
-Runtime['NilClass'] = ToyLangClass.new
+Runtime['TrueClass'] = ToyLangClass.new(Runtime['Object'])
+Runtime['FalseClass'] = ToyLangClass.new(Runtime['Object'])
+Runtime['NilClass'] = ToyLangClass.new(Runtime['Object'])
 
 Runtime['true'] = Runtime['TrueClass'].new_with_value(true)
 Runtime['false'] = Runtime['FalseClass'].new_with_value(false)
