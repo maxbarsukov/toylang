@@ -38,12 +38,12 @@ Runtime['Object'].runtime_methods['println'] = proc do |_receiver, arguments|
 end
 
 # Object to string
-Runtime['Object'].runtime_methods['to_string'] = proc do |_receiver, arguments|
-  Runtime['String'].new_with_value(arguments.first.ruby_value.to_s)
+Runtime['Object'].runtime_methods['to_string'] = proc do |receiver, _arguments|
+  Runtime['String'].new_with_value(receiver.ruby_value.to_s)
 end
 
-Runtime['Object'].runtime_methods['inspect'] = proc do |_receiver, arguments|
-  Runtime['String'].new_with_value(arguments.first.ruby_value.inspect)
+Runtime['Object'].runtime_methods['inspect'] = proc do |receiver, _arguments|
+  Runtime['String'].new_with_value(receiver.ruby_value.inspect)
 end
 
 ### Numbers
