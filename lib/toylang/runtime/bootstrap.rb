@@ -30,3 +30,10 @@ Runtime['Object'].runtime_methods['print'] = proc do |_receiver, arguments|
   puts arguments.first.ruby_value
   Runtime['nil']
 end
+
+%w[+ - * / % < <= == > >= !=].each do |operator|
+  Runtime['Number'].runtime_methods[operator] = proc do |receiver, arguments|
+    result = eval("#{receiver.ruby_value} #{operator} #{arguments.first.ruby_value}")
+    Runtime['Number'].new_with_value(result)
+  end
+end
