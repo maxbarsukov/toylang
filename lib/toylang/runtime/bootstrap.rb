@@ -48,11 +48,21 @@ end
 
 ### Numbers
 # Binary operators
-%w[+ * / % < <= == > >= != ** & | ^ >> << || &&].each do |operator|
+%w[+ * / % < <= == > >= != & | ^ >> << || &&].each do |operator|
   Runtime['Number'].runtime_methods[operator] = proc do |receiver, arguments|
     result = eval("#{receiver.ruby_value} #{operator} #{arguments.first.ruby_value}") # rubocop:disable Security/Eval, Style/EvalWithLocation
     Runtime['Number'].new_with_value(result)
   end
+end
+
+Runtime['Number'].runtime_methods['**'] = proc do |receiver, arguments|
+  rec = if receiver.ruby_value.negative? && arguments.first.ruby_value.even?
+          receiver.ruby_value.abs
+        else
+          receiver.ruby_value
+        end
+  result = rec**arguments.first.ruby_value
+  Runtime['Number'].new_with_value(result)
 end
 
 # Unary operators
