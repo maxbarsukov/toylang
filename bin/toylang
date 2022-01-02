@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'readline'
+require_relative '../lib/toylang'
+
+interpreter = Interpreter.new
+
+if ARGV.first
+  interpreter.eval File.read(ARGV.first)
+else
+  lines = ''
+  puts 'ToyLang REPL, CTRL+C to quit'
+  loop do
+    greet = lines == '' ? '>> ' : '|  '
+    line = Readline.readline(greet)
+    Readline::HISTORY.push(line)
+    lines += if lines.chomp[-1] == ':'
+               "\n#{line}"
+             else
+               line
+             end
+
+    begin
+      value = interpreter.eval(lines)
+      puts "=> #{value.ruby_value.inspect}"
+      lines = ''
+    rescue StandardError # rubocop:disable Lint/SuppressedException
+    end
+  end
+end
