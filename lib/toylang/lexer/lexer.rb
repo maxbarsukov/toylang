@@ -57,7 +57,8 @@ class Lexer
         end
         offset = indent.size + 1
 
-      elsif (operator = chunk[/\A(\|\||&&|==|!=|<=|>=)/, 1])
+      elsif (operator = chunk[
+        %r{\A(\|\||&&|==|!=|<=|>=|\+=|-=|\*=|/=|%=|\*\*=|&=|\|=|\^=|<<|>>|<<=|>>=|&&=|\|\|=|\*\*)}, 1])
         tokens << [operator, operator]
         offset = operator.size
 

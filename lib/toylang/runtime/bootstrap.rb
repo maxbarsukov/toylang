@@ -27,13 +27,60 @@ end
 
 # Print an object to the console.
 Runtime['Object'].runtime_methods['print'] = proc do |_receiver, arguments|
+  print arguments.first.ruby_value
+  Runtime['nil']
+end
+
+# Print an object to the console with new line.
+Runtime['Object'].runtime_methods['println'] = proc do |_receiver, arguments|
   puts arguments.first.ruby_value
   Runtime['nil']
 end
 
-%w[+ - * / % < <= == > >= !=].each do |operator|
+# Object to string
+Runtime['Object'].runtime_methods['to_string'] = proc do |_receiver, arguments|
+  Runtime['String'].new_with_value(arguments.first.ruby_value.to_s)
+end
+
+Runtime['Object'].runtime_methods['inspect'] = proc do |_receiver, arguments|
+  Runtime['String'].new_with_value(arguments.first.ruby_value.inspect)
+end
+
+# Binary operators
+%w[+ * / % < <= == > >= != **].each do |operator|
   Runtime['Number'].runtime_methods[operator] = proc do |receiver, arguments|
     result = eval("#{receiver.ruby_value} #{operator} #{arguments.first.ruby_value}") # rubocop:disable Security/Eval, Style/EvalWithLocation
     Runtime['Number'].new_with_value(result)
   end
+end
+
+# Unary operators
+%w[! ~].each do |operator|
+  Runtime['Number'].runtime_methods[operator] = proc do |receiver, _arguments|
+    result = eval("#{operator}#{receiver.ruby_value}") # rubocop:disable Security/Eval, Style/EvalWithLocation
+    Runtime['Number'].new_with_value(result)
+  end
+end
+
+boolean_operators = %w[== != && & || | ^]
+%w[TrueClass FalseClass].each do |boolean|
+  boolean_operators.each do |operator|
+    Runtime[boolean].runtime_methods[operator] = proc do |receiver, arguments|
+      result = eval("#{receiver.ruby_value} #{operator} #{arguments.first.ruby_value}") # rubocop:disable Security/Eval, Style/EvalWithLocation
+      Runtime[boolean].new_with_value(result)
+    end
+  end
+  Runtime[boolean].runtime_methods['!'] = proc do |receiver, _arguments|
+    result = !receiver.ruby_value
+    Runtime[boolean].new_with_value(result)
+  end
+end
+
+Runtime['Number'].runtime_methods['-'] = proc do |receiver, arguments|
+  result = if arguments.size.zero?
+             -receiver.ruby_value
+           else
+             receiver.ruby_value - arguments.first.ruby_value
+           end
+  Runtime['Number'].new_with_value(result)
 end

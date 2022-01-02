@@ -66,7 +66,7 @@ RSpec.describe Interpreter do
     code = <<~CODE
       a = 0
       while (a < 3):
-        print(a)
+        println(a)
         a = a + 1
     CODE
     expect do
@@ -117,6 +117,6 @@ RSpec.describe Interpreter do
     CODE
     expect do
       interpreter.eval(code)
-    end.to output("yeah!\n").to_stdout
+    end.to output('yeah!').to_stdout
   end
 end

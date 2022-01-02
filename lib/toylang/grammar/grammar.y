@@ -14,11 +14,17 @@ class Parser
   # Precedence Table
   prechigh
     left  '.'
-    right '!'
-    left  '*' '/'
+    right '~'
+    right '!' '-'
+    left '**'
+    left  '*' '/' '%'
     left  '+' '-'
+    left  '<<' '>>'
     left  '>' '>=' '<' '<='
     left  '==' '!='
+    left  '&'
+    left  '^'
+    left  '|'
     left  '&&'
     left  '||'
     right '='
@@ -96,7 +102,16 @@ class Parser
   | Expression '-'  Expression          { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression '*'  Expression          { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression '/'  Expression          { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression '%'  Expression          { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression '<<' Expression          { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression '>>' Expression          { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression '**' Expression          { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression '&' Expression           { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression '|' Expression           { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | Expression '^' Expression           { result = CallNode.new(val[0], val[1], [val[2]]) }
   | '!'  Expression                     { result = CallNode.new(val[1], val[0], []) }
+  | '-'  Expression                     { result = CallNode.new(val[1], val[0], []) }
+  | '~'  Expression                     { result = CallNode.new(val[1], val[0], []) }
   ;
 
   Constant:
