@@ -23,7 +23,9 @@ else
 
     begin
       value = interpreter.eval(lines)
-      puts "=> #{value.ruby_value.inspect}"
+      out = (value.ruby_value.inspect if value.respond_to? :ruby_value)
+      out ||= value.inspect
+      puts "=> #{out}"
       lines = ''
     rescue StandardError # rubocop:disable Lint/SuppressedException
     end
