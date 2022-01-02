@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'toylang/version'
+require_relative 'toylang/monkey_patching/string'
 require_relative 'toylang/ast/nodes'
 require_relative 'toylang/lexer/lexer'
 require_relative 'toylang/parser/parser'

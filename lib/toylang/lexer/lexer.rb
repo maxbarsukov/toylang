@@ -22,9 +22,8 @@ class Lexer
       elsif (constant = chunk[/\A([A-Z]\w*)/, 1])
         tokens << [:CONSTANT, constant]
         offset = constant.size
-
-      elsif (number = chunk[/\A([0-9]+)/, 1])
-        tokens << [:NUMBER, number.to_i]
+      elsif (number = chunk[/\A(([0-9]*[.])?[0-9]+)/, 1])
+        tokens << [:NUMBER, number.to_numeric]
         offset = number.size
 
       elsif (string = chunk[/\A"([^"]*)"/, 1])
