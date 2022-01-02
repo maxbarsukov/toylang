@@ -42,5 +42,4 @@ SetLocalNode = Struct.new(:name, :value)
 DefNode = Struct.new(:name, :params, :body)
 
 ClassNode = Struct.new(:name, :body)
-IfNode = Struct.new(:condition, :body)
 IfElseNode = Struct.new(:condition, :body, :else_body)

@@ -85,7 +85,7 @@ RSpec.describe Parser do
     if true:
       nil
     CODE
-    nodes = Nodes.new([IfNode.new(TrueNode.new, Nodes.new([NilNode.new]))])
+    nodes = Nodes.new([IfElseNode.new(TrueNode.new, Nodes.new([NilNode.new]), nil)])
     expect(parser.parse(code)).to eq nodes
   end
 

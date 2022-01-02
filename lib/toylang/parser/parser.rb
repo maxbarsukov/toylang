@@ -707,7 +707,7 @@ module_eval(<<'.,.,', 'grammar.y', 127)
 
 module_eval(<<'.,.,', 'grammar.y', 131)
   def _reduce_54(val, _values, result)
-     result = IfNode.new(val[1], val[2])
+     result = IfElseNode.new(val[1], val[2], nil)
     result
   end
 .,.,
