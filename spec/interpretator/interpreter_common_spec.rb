@@ -113,10 +113,27 @@ RSpec.describe Interpreter do
       car = Car.new
       if car:
         print(car.does_it_work)
-
     CODE
     expect do
       interpreter.eval(code)
     end.to output('yeah!').to_stdout
+  end
+
+  it 'interpreting classes inheritance' do
+    code = <<~CODE
+      class Animal:
+        def is_a_human:
+          false
+
+      class Dog < Animal:
+        def say:
+          "Bark!"
+      dog = Dog.new
+      println(dog.say)
+      println(dog.is_a_human)
+    CODE
+    expect do
+      interpreter.eval(code)
+    end.to output("Bark!\nfalse\n").to_stdout
   end
 end
