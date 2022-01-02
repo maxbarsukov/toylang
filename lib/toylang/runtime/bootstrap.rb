@@ -33,7 +33,7 @@ end
 
 %w[+ - * / % < <= == > >= !=].each do |operator|
   Runtime['Number'].runtime_methods[operator] = proc do |receiver, arguments|
-    result = eval("#{receiver.ruby_value} #{operator} #{arguments.first.ruby_value}")
+    result = eval("#{receiver.ruby_value} #{operator} #{arguments.first.ruby_value}") # rubocop:disable Security/Eval, Style/EvalWithLocation
     Runtime['Number'].new_with_value(result)
   end
 end
