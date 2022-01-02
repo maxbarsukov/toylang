@@ -15,13 +15,17 @@ class Lexer
     while position < code.size
       chunk = code[position..-1]
 
-      if (identifier = chunk[/\A([a-z]\w*)/, 1])
+      if chunk.start_with?('#')
+        offset = chunk.index("\n") + 1
+
+      elsif (identifier = chunk[/\A([a-z]\w*)/, 1])
         token, offset = tokenize_identifier(identifier)
         tokens << token
 
       elsif (constant = chunk[/\A([A-Z]\w*)/, 1])
         tokens << [:CONSTANT, constant]
         offset = constant.size
+
       elsif (number = chunk[/\A(([0-9]*[.])?[0-9]+)/, 1])
         tokens << [:NUMBER, number.to_numeric]
         offset = number.size
