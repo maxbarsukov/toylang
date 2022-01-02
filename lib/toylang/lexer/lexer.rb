@@ -4,7 +4,7 @@ class Lexer
   KEYWORDS = %w[def class if else true false nil while].freeze
 
   def tokenize(code)
-    code = code.chomp
+    code = code.chomp.gsub(/^$\n/, '')
     tokens = []
     parse_indent = true
 

@@ -57,7 +57,6 @@ RSpec.describe Lexer do
       [:DEDENT, 2], [:NEWLINE, "\n"],
       [:NUMBER, 2],                                  # 2
       [:DEDENT, 0], [:NEWLINE, "\n"],
-      [:NEWLINE, "\n"],                              #
       [:IDENTIFIER, 'print'], [:STRING, 'The End']   # print "The End"
     ]
 
