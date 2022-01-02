@@ -44,7 +44,6 @@ RSpec.describe Interpreter do
       end
 
       it '**' do
-        pp Parser.new.parse('-5 ** 4')
         expect(interpreter.eval('5 ** 3').ruby_value).to eq 125
         expect(interpreter.eval('(-5) ** 4').ruby_value).to eq 625
         expect(interpreter.eval('-(5 ** 4)').ruby_value).to eq(-625)
