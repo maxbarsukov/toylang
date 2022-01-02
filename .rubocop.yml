@@ -14,6 +14,9 @@ AllCops:
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
+Gemspec/RequireMFA:
+  Enabled: false
+
 Metrics/BlockLength:
   Max: 100
   Exclude:
