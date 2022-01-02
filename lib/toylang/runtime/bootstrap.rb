@@ -46,8 +46,9 @@ Runtime['Object'].runtime_methods['inspect'] = proc do |_receiver, arguments|
   Runtime['String'].new_with_value(arguments.first.ruby_value.inspect)
 end
 
+### Numbers
 # Binary operators
-%w[+ * / % < <= == > >= != **].each do |operator|
+%w[+ * / % < <= == > >= != ** & | ^ >> << || &&].each do |operator|
   Runtime['Number'].runtime_methods[operator] = proc do |receiver, arguments|
     result = eval("#{receiver.ruby_value} #{operator} #{arguments.first.ruby_value}") # rubocop:disable Security/Eval, Style/EvalWithLocation
     Runtime['Number'].new_with_value(result)
@@ -62,6 +63,16 @@ end
   end
 end
 
+Runtime['Number'].runtime_methods['-'] = proc do |receiver, arguments|
+  result = if arguments.size.zero?
+             -receiver.ruby_value
+           else
+             receiver.ruby_value - arguments.first.ruby_value
+           end
+  Runtime['Number'].new_with_value(result)
+end
+
+### Booleans
 boolean_operators = %w[== != && & || | ^]
 %w[TrueClass FalseClass].each do |boolean|
   boolean_operators.each do |operator|
@@ -74,13 +85,4 @@ boolean_operators = %w[== != && & || | ^]
     result = !receiver.ruby_value
     Runtime[boolean].new_with_value(result)
   end
-end
-
-Runtime['Number'].runtime_methods['-'] = proc do |receiver, arguments|
-  result = if arguments.size.zero?
-             -receiver.ruby_value
-           else
-             receiver.ruby_value - arguments.first.ruby_value
-           end
-  Runtime['Number'].new_with_value(result)
 end
