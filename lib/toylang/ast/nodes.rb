@@ -7,7 +7,6 @@ Nodes = Struct.new(:nodes) do
   end
 end
 
-WhileNode = Struct.new(:condition, :body)
 LiteralNode = Struct.new(:value)
 
 class NumberNode < LiteralNode; end
@@ -43,3 +42,4 @@ DefNode = Struct.new(:name, :params, :body)
 
 ClassNode = Struct.new(:name, :body)
 IfElseNode = Struct.new(:condition, :body, :else_body)
+WhileNode = Struct.new(:condition, :body)

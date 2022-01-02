@@ -9,6 +9,8 @@ require_relative 'toylang/runtime/class'
 require_relative 'toylang/runtime/method'
 require_relative 'toylang/runtime/context'
 require_relative 'toylang/runtime/bootstrap'
+require_relative 'toylang/interpreter/interpreter'
+require_relative 'toylang/interpreter/evaluation'
 
 module Toylang
   class Error < StandardError; end
