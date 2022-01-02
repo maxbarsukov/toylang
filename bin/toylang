@@ -27,7 +27,7 @@ else
       out ||= value.inspect
       puts "=> #{out}"
       lines = ''
-    rescue StandardError # rubocop:disable Lint/SuppressedException
+    rescue Racc::ParseError # rubocop:disable Lint/SuppressedException
     end
   end
 end
