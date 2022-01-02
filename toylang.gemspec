@@ -29,8 +29,6 @@ Gem::Specification.new do |spec|
   spec.executables << 'toylang'
   spec.require_paths = ['lib']
 
-  spec.metadata['rubygems_mfa_required'] = 'true'
-
   # Dependencies
   spec.add_dependency 'racc', '~> 1.6'
 
