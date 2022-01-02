@@ -40,6 +40,6 @@ SetLocalNode = Struct.new(:name, :value)
 
 DefNode = Struct.new(:name, :params, :body)
 
-ClassNode = Struct.new(:name, :body)
+ClassNode = Struct.new(:name, :body, :superclass)
 IfElseNode = Struct.new(:condition, :body, :else_body)
 WhileNode = Struct.new(:condition, :body)

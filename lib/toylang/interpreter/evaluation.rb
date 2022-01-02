@@ -99,7 +99,7 @@ class ClassNode
     toylang_class = context[name]
 
     unless toylang_class
-      toylang_class = ToyLangClass.new
+      toylang_class = ToyLangClass.new(Runtime[superclass || 'Object'])
       context[name] = toylang_class
     end
 

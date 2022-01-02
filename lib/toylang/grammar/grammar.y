@@ -140,18 +140,17 @@ class Parser
   ;
 
   Class:
-    CLASS CONSTANT Block                { result = ClassNode.new(val[1], val[2]) }
+    CLASS CONSTANT Block                { result = ClassNode.new(val[1], val[2], nil) }
+  | CLASS CONSTANT "<" CONSTANT Block   { result = ClassNode.new(val[1], val[4], val[3]) }
   ;
 
   IfElse:
     IF Expression Block                 { result = IfElseNode.new(val[1], val[2], nil) }
-  | IF Expression Block ELSE Block      { result = IfElseNode.new(val[1], val[2], val[4]) }
+  | IF Expression Block NEWLINE ELSE Block      { result = IfElseNode.new(val[1], val[2], val[5]) }
   ;
 
   Block:
     INDENT Expressions DEDENT           { result = val[1] }
-  | INDENT Expressions
-    DEDENT Terminator                   { result = val[1] }
   ;
 end
 
